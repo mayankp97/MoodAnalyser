@@ -18,11 +18,20 @@ namespace MoodAnalyser
         public string AnalyseMood(string message = null)
         {
             var messageCopy = message ?? this.message;
-            messageCopy = messageCopy.ToLower();
-            if (messageCopy == "i am in sad mood")
-                return "SAD";
-            else
+            
+            try
+            {
+                messageCopy = messageCopy.ToLower();
+                if (messageCopy == "i am in sad mood")
+                    return "SAD";
+                else
+                    return "HAPPY";
+            }
+            catch (NullReferenceException)
+            {
                 return "HAPPY";
+            }
+            
         }
     }
 }

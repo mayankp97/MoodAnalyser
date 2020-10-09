@@ -38,5 +38,53 @@ namespace MoodAnalyserTests
 
         }
 
+        [Test]
+        public void SetField_WhenPassedProperFieldName_ReturnsHappy()
+        {
+            //Arrange
+            var fieldName = "message";
+            var methodName = "AnalyseMood";
+            var moodAnalyser = new MoodAnalyser.MoodAnalyser();
+            var message = "I am in Happy Mood";
+
+            //Act
+            MoodAnalyserReflector.SetField(moodAnalyser, fieldName, message);
+            var result = MoodAnalyserReflector.Invoke(methodName, null, moodAnalyser);
+
+            //Assert
+            Assert.That(result, Is.EqualTo("HAPPY").IgnoreCase);
+        }
+
+        [Test]
+        public void SetField_WhenPassedInvalidFieldName_ThrowsMoodAnalysisException()
+        {
+            //Arrange
+            var fieldName = "messagess";
+            var methodName = "AnalyseMood";
+            var moodAnalyser = new MoodAnalyser.MoodAnalyser();
+            var message = "I am in Happy Mood";
+
+
+            //Assert
+            Assert.That(() => MoodAnalyserReflector.SetField(moodAnalyser,fieldName,message),Throws.Exception.InstanceOf<MoodAnalysisException>());
+            Assert.That(() => MoodAnalyserReflector.SetField(moodAnalyser, fieldName, message), Throws.Exception.Message.Contains("No Such Field").IgnoreCase);
+
+        }
+
+        [Test]
+        public void SetField_WhenPassedNullValue_ThrowsMoodAnalysisException()
+        {
+            //Arrange
+            var fieldName = "messages";
+            var methodName = "AnalyseMood";
+            var moodAnalyser = new MoodAnalyser.MoodAnalyser();
+            string message = null;
+
+
+            //Assert
+            Assert.That(() => MoodAnalyserReflector.SetField(moodAnalyser, fieldName, message), Throws.Exception.InstanceOf<MoodAnalysisException>());
+            Assert.That(() => MoodAnalyserReflector.SetField(moodAnalyser, fieldName, message), Throws.Exception.Message.Contains("cannot set null").IgnoreCase);
+
+        }
     }
 }

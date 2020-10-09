@@ -2,4 +2,9 @@
 bin/ 
 obj/ 
 MoodAnalyser.csproj 
+MoodAnalyser.IsolatorCache.user
 MoodAnalyser.sln 
+MoodAnalyserTests/bin
+MoodAnalyserTests/obj
+MoodAnalyserTests/MoodAnalyserTests.csproj
+

@@ -75,7 +75,33 @@ namespace MoodAnalyserTests
             var result = moodAnalyser.AnalyseMood();
 
             //Assert
-            Assert.That(result, Is.EqualTo("HAPPY").IgnoreCase);
+            Assert.That(result, Does.Contain("null").IgnoreCase);
+        }
+
+        [Test]
+        public void AnalyseMood_IfNullMessage_ReturnsExceptionInfo()
+        {
+            //Arrange
+            var moodAnalyser = new MoodAnalyser.MoodAnalyser(null);
+
+            //Act
+            var result = moodAnalyser.AnalyseMood();
+
+            //Assert
+            Assert.That(result, Does.Contain("null").IgnoreCase);
+        }
+
+        [Test]
+        public void AnalyseMood_IfEmptyMessage_ReturnsExceptionInfo()
+        {
+            //Arrange
+            var moodAnalyser = new MoodAnalyser.MoodAnalyser("");
+
+            //Act
+            var result = moodAnalyser.AnalyseMood();
+
+            //Assert
+            Assert.That(result, Does.Contain("empty").IgnoreCase);
         }
     }
 }

@@ -21,15 +21,19 @@ namespace MoodAnalyser
             
             try
             {
+                if (messageCopy == null)
+                    throw new MoodAnalysisException(messageCopy);
+                if (messageCopy == "")
+                    throw new MoodAnalysisException(messageCopy);
                 messageCopy = messageCopy.ToLower();
                 if (messageCopy == "i am in sad mood")
                     return "SAD";
                 else
                     return "HAPPY";
             }
-            catch (NullReferenceException)
+            catch (MoodAnalysisException ex)
             {
-                return "HAPPY";
+                return ex.message;
             }
             
         }

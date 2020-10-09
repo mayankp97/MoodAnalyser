@@ -37,5 +37,32 @@ namespace MoodAnalyserTests
             //Assert
             Assert.That(result, Is.EqualTo("HAPPY").IgnoreCase);
         }
+
+        [Test]
+        public void AnalyseMood_SadMessageCtor_ReturnsSAD()
+        {
+            //Arrange
+            var moodAnalyser = new MoodAnalyser.MoodAnalyser("I am in Sad Mood");
+
+            //Act
+            var result = moodAnalyser.AnalyseMood();
+
+            //Assert
+            Assert.That(result, Is.EqualTo("SAD").IgnoreCase);
+
+        }
+
+        [Test]
+        public void AnalyseMood_NoSadMessageCtor_ReturnsHappy()
+        {
+            //Arrange
+            var moodAnalyser = new MoodAnalyser.MoodAnalyser("I am in any mood");
+
+            //Act
+            var result = moodAnalyser.AnalyseMood();
+
+            //Assert
+            Assert.That(result, Is.EqualTo("HAPPY").IgnoreCase);
+        }
     }
 }

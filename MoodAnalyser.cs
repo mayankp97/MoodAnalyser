@@ -18,13 +18,13 @@ namespace MoodAnalyser
         public string AnalyseMood(string message = null)
         {
             var messageCopy = message ?? this.message;
-            
+
             try
             {
                 if (messageCopy == null)
-                    throw new MoodAnalysisException(messageCopy);
+                    throw new MoodAnalysisException("You passed Null as mood",messageCopy);
                 if (messageCopy == "")
-                    throw new MoodAnalysisException(messageCopy);
+                    throw new MoodAnalysisException("You passed Empty as mood", messageCopy);
                 messageCopy = messageCopy.ToLower();
                 if (messageCopy == "i am in sad mood")
                     return "SAD";
@@ -33,9 +33,19 @@ namespace MoodAnalyser
             }
             catch (MoodAnalysisException ex)
             {
-                return ex.message;
+                throw ex;
             }
-            
+
+        }
+
+        public override bool Equals(object obj1)
+        {
+            var copy = (MoodAnalyser)obj1;
+            if (copy.message == this.message)
+                return true;
+            else
+                return false;
         }
     }
+        
 }

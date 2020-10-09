@@ -66,42 +66,27 @@ namespace MoodAnalyserTests
         }
 
         [Test]
-        public void AnalyseMood_IfNullMessage_ReturnsHappy()
+        public void AnalyseMood_IfNullMessage_ThrowsMoodAnalysisException()
         {
             //Arrange
             var moodAnalyser = new MoodAnalyser.MoodAnalyser(null);
 
-            //Act
-            var result = moodAnalyser.AnalyseMood();
-
             //Assert
-            Assert.That(result, Does.Contain("null").IgnoreCase);
+            Assert.That(() => moodAnalyser.AnalyseMood(), Throws.InstanceOf<MoodAnalysisException>());
+            Assert.That(() => moodAnalyser.AnalyseMood(), Throws.Exception.Message.Contains("null").IgnoreCase);
+
         }
 
         [Test]
-        public void AnalyseMood_IfNullMessage_ReturnsExceptionInfo()
-        {
-            //Arrange
-            var moodAnalyser = new MoodAnalyser.MoodAnalyser(null);
-
-            //Act
-            var result = moodAnalyser.AnalyseMood();
-
-            //Assert
-            Assert.That(result, Does.Contain("null").IgnoreCase);
-        }
-
-        [Test]
-        public void AnalyseMood_IfEmptyMessage_ReturnsExceptionInfo()
+        public void AnalyseMood_IfEmptyMessage_ThrowsMoodAnalysisException()
         {
             //Arrange
             var moodAnalyser = new MoodAnalyser.MoodAnalyser("");
 
-            //Act
-            var result = moodAnalyser.AnalyseMood();
-
             //Assert
-            Assert.That(result, Does.Contain("empty").IgnoreCase);
+            Assert.That(() => moodAnalyser.AnalyseMood(), Throws.InstanceOf<MoodAnalysisException>());
+            Assert.That(() => moodAnalyser.AnalyseMood(), Throws.Exception.Message.Contains("empty").IgnoreCase);
+
         }
     }
 }

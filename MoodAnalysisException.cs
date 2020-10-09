@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace MoodAnalyser
 {
-    class MoodAnalysisException : Exception
+    public class MoodAnalysisException : Exception
     {
         public enum error { Empty, Null, Unknown};
 
@@ -13,11 +13,9 @@ namespace MoodAnalyser
 
         public string message;
 
-        public MoodAnalysisException(string mood)
+        public MoodAnalysisException(string message,string mood = null) : base(message)
         {
             errorIs = mood == null ? error.Null : (mood == "" ? error.Empty : error.Unknown) ;
-            message = errorIs == error.Null ? "Mood passed is Null" : 
-                (errorIs == error.Empty ? "Mood Passed is Empty" : "Unknown Error");
         }
     }
 }

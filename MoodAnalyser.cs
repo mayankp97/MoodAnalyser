@@ -26,14 +26,14 @@ namespace MoodAnalyser
                 if (messageCopy == "")
                     throw new MoodAnalysisException("You passed Empty as mood", messageCopy);
                 messageCopy = messageCopy.ToLower();
-                if (messageCopy == "i am in sad mood")
+                if (messageCopy.Contains("sad"))
                     return "SAD";
                 else
                     return "HAPPY";
             }
-            catch (MoodAnalysisException ex)
+            catch (MoodAnalysisException exception)
             {
-                throw ex;
+                throw exception;
             }
 
         }

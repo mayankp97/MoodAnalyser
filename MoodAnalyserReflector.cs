@@ -39,7 +39,7 @@ namespace MoodAnalyser
             }
             catch (Exception)
             {
-                if (moodAnalyser.message == null)
+                if (message == null)
                     throw new MoodAnalysisException("Cannot set null as field value");
                 throw new MoodAnalysisException("No Such Field Exists");
             }

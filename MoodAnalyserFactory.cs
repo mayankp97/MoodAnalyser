@@ -25,30 +25,10 @@ namespace MoodAnalyser
             }
             catch (Exception)
             {
-
                 if (ClassName != "MoodAnalyser")
-                    throw new MoodAnalysisException("No such Class Exists");
-                throw new MoodAnalysisException("No such method exists!");
+                    throw new MoodAnalysisException("No such Class Exists",MoodAnalysisException.error.No_Such_Class);
+                throw new MoodAnalysisException("No such method exists!", MoodAnalysisException.error.No_Such_Method);
             }
-
-
-
-            /*
-            if (ClassName != "MoodAnalyser")
-                throw new MoodAnalysisException(null,"Error : No Such Class");
-            try
-            {
-                var obj = new MoodAnalyser();
-                var result = (MoodAnalyser)Activator.CreateInstance(typeof(MoodAnalyser), parameter);
-                return result;
-
-            }
-            catch (Exception)
-            {
-
-                throw new MoodAnalysisException("No Such method");
-            }
-            */
         }
     }
 }

@@ -21,7 +21,7 @@ namespace MoodAnalyser
             catch (Exception)
             {
 
-                throw new MoodAnalysisException("No Such Method Exists");
+                throw new MoodAnalysisException("No Such Method Exists", MoodAnalysisException.error.No_Such_Method);
             }
 
         }
@@ -40,8 +40,8 @@ namespace MoodAnalyser
             catch (Exception)
             {
                 if (message == null)
-                    throw new MoodAnalysisException("Cannot set null as field value");
-                throw new MoodAnalysisException("No Such Field Exists");
+                    throw new MoodAnalysisException("Cannot set null as field value", MoodAnalysisException.error.Null_Field);
+                throw new MoodAnalysisException("No Such Field Exists", MoodAnalysisException.error.No_Such_Field);
             }
             
         }

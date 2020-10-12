@@ -22,9 +22,9 @@ namespace MoodAnalyser
             try
             {
                 if (messageCopy == null)
-                    throw new MoodAnalysisException("You passed Null as mood",messageCopy);
+                    throw new MoodAnalysisException("You passed Null as mood",MoodAnalysisException.error.Null_Mood);
                 if (messageCopy == "")
-                    throw new MoodAnalysisException("You passed Empty as mood", messageCopy);
+                    throw new MoodAnalysisException("You passed Empty as mood", MoodAnalysisException.error.Empty_Mood);
                 messageCopy = messageCopy.ToLower();
                 if (messageCopy.Contains("sad"))
                     return "SAD";

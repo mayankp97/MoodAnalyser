@@ -7,15 +7,15 @@ namespace MoodAnalyser
 {
     public class MoodAnalysisException : Exception
     {
-        public enum error { Empty, Null, Unknown};
+        public enum error { Empty_Mood, Null_Mood, No_Such_Method, No_Such_Class, Null_Field, No_Such_Field };
 
         public error errorIs;
 
         public string message;
 
-        public MoodAnalysisException(string message,string mood = null) : base(message)
+        public MoodAnalysisException(string message,error error) : base(message)
         {
-            errorIs = mood == null ? error.Null : (mood == "" ? error.Empty : error.Unknown) ;
+            errorIs = error;
         }
     }
 }
